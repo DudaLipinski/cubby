@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PortionIndexRouteImport } from './routes/portion/index'
 import { Route as PortionUpdateRouteImport } from './routes/portion/update'
-import { Route as PortionPortionsRouteImport } from './routes/portion/portions'
+import { Route as PortionListRouteImport } from './routes/portion/list'
 import { Route as PortionCreateRouteImport } from './routes/portion/create'
 
 const IndexRoute = IndexRouteImport.update({
@@ -30,9 +30,9 @@ const PortionUpdateRoute = PortionUpdateRouteImport.update({
   path: '/portion/update',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PortionPortionsRoute = PortionPortionsRouteImport.update({
-  id: '/portion/portions',
-  path: '/portion/portions',
+const PortionListRoute = PortionListRouteImport.update({
+  id: '/portion/list',
+  path: '/portion/list',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortionCreateRoute = PortionCreateRouteImport.update({
@@ -44,14 +44,14 @@ const PortionCreateRoute = PortionCreateRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/portion/create': typeof PortionCreateRoute
-  '/portion/portions': typeof PortionPortionsRoute
+  '/portion/list': typeof PortionListRoute
   '/portion/update': typeof PortionUpdateRoute
   '/portion/': typeof PortionIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/portion/create': typeof PortionCreateRoute
-  '/portion/portions': typeof PortionPortionsRoute
+  '/portion/list': typeof PortionListRoute
   '/portion/update': typeof PortionUpdateRoute
   '/portion': typeof PortionIndexRoute
 }
@@ -59,7 +59,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/portion/create': typeof PortionCreateRoute
-  '/portion/portions': typeof PortionPortionsRoute
+  '/portion/list': typeof PortionListRoute
   '/portion/update': typeof PortionUpdateRoute
   '/portion/': typeof PortionIndexRoute
 }
@@ -68,21 +68,16 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/portion/create'
-    | '/portion/portions'
+    | '/portion/list'
     | '/portion/update'
     | '/portion/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/portion/create'
-    | '/portion/portions'
-    | '/portion/update'
-    | '/portion'
+  to: '/' | '/portion/create' | '/portion/list' | '/portion/update' | '/portion'
   id:
     | '__root__'
     | '/'
     | '/portion/create'
-    | '/portion/portions'
+    | '/portion/list'
     | '/portion/update'
     | '/portion/'
   fileRoutesById: FileRoutesById
@@ -90,7 +85,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PortionCreateRoute: typeof PortionCreateRoute
-  PortionPortionsRoute: typeof PortionPortionsRoute
+  PortionListRoute: typeof PortionListRoute
   PortionUpdateRoute: typeof PortionUpdateRoute
   PortionIndexRoute: typeof PortionIndexRoute
 }
@@ -118,11 +113,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortionUpdateRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/portion/portions': {
-      id: '/portion/portions'
-      path: '/portion/portions'
-      fullPath: '/portion/portions'
-      preLoaderRoute: typeof PortionPortionsRouteImport
+    '/portion/list': {
+      id: '/portion/list'
+      path: '/portion/list'
+      fullPath: '/portion/list'
+      preLoaderRoute: typeof PortionListRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portion/create': {
@@ -138,7 +133,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PortionCreateRoute: PortionCreateRoute,
-  PortionPortionsRoute: PortionPortionsRoute,
+  PortionListRoute: PortionListRoute,
   PortionUpdateRoute: PortionUpdateRoute,
   PortionIndexRoute: PortionIndexRoute,
 }
