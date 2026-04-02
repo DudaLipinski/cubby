@@ -9,6 +9,8 @@ const pool =
   globalDb.pgPool ??
   new Pool({
     connectionString: process.env.DATABASE_URL,
+    connectionTimeoutMillis: 3_000,
+    query_timeout: 5_000,
   });
 
 if (!globalDb.pgPool) {
