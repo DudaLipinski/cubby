@@ -155,7 +155,7 @@ function CreatePortion() {
                       type="number"
                       min={1}
                       step={0.5}
-                      inputMode="numeric"
+                      inputMode="decimal"
                       value={field.state.value}
                       onChange={(event) => field.handleChange(event.target.value)}
                       onBlur={field.handleBlur}
