@@ -108,6 +108,7 @@ function UpdatePortionForm({ portionId, initialValues }: UpdatePortionFormProps)
           onSubmit={(event) => {
             event.preventDefault();
             event.stopPropagation();
+            if (!event.currentTarget.reportValidity()) return;
             form.handleSubmit();
           }}
         >
@@ -164,7 +165,7 @@ function UpdatePortionForm({ portionId, initialValues }: UpdatePortionFormProps)
                     id="portion-quantity"
                     type="number"
                     min={1}
-                    step={0.5}
+                    step={0.25}
                     inputMode="decimal"
                     value={field.state.value}
                     onChange={(event) => field.handleChange(event.target.value)}
