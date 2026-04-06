@@ -150,7 +150,9 @@ function PortionsPage() {
         <Select
           value={selectedSortValue}
           onValueChange={(value) => {
-            const [sort, order] = value.split("-") as [SortField, SortOrder];
+            const separatorIndex = value.lastIndexOf("-");
+            const sort = value.slice(0, separatorIndex) as SortField;
+            const order = value.slice(separatorIndex + 1) as SortOrder;
 
             navigate({
               search: (prev) => ({
