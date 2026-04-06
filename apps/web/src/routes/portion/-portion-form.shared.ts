@@ -1,4 +1,4 @@
-import type { CreatePortionBody, Portion, UpdatePortionBody } from "@cube-prep/api-client";
+import type { CreatePortionBody, Portion } from "@cube-prep/api-client";
 
 export type PortionFormState = {
   name: string;
@@ -18,7 +18,7 @@ export const portionTypes: Array<CreatePortionBody["type"]> = [
   "other",
 ];
 
-export function toDateTimeLocalValue(date: Date): string {
+function toDateTimeLocalValue(date: Date): string {
   const tzOffsetMs = date.getTimezoneOffset() * 60 * 1000;
   return new Date(date.getTime() - tzOffsetMs).toISOString().slice(0, 16);
 }
@@ -41,16 +41,7 @@ export function mapPortionToFormValues(portion: Portion): PortionFormState {
   };
 }
 
-export function mapFormToCreatePayload(value: PortionFormState): CreatePortionBody {
-  return {
-    name: value.name.trim(),
-    type: value.type,
-    quantity: Number(value.quantity),
-    prepared_at: new Date(value.preparedAt).toISOString(),
-  };
-}
-
-export function mapFormToUpdatePayload(value: PortionFormState): UpdatePortionBody {
+export function mapFormToPortionPayload(value: PortionFormState): CreatePortionBody {
   return {
     name: value.name.trim(),
     type: value.type,

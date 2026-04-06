@@ -34,7 +34,7 @@ export const portionByIdQueryOptions = (portionId?: string) =>
     queryKey: ["portion", portionId],
     queryFn: async () => {
       if (!portionId) {
-        return null;
+        throw new Error("No portion selected.");
       }
 
       const { data } = await apiClient.GET("/portion/{id}", {

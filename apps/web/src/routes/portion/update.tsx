@@ -14,7 +14,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import {
-  mapFormToUpdatePayload,
+  mapFormToPortionPayload,
   mapPortionToFormValues,
   portionTypes,
   type PortionFormState,
@@ -77,7 +77,7 @@ function UpdatePortionForm({ portionId, initialValues }: UpdatePortionFormProps)
     defaultValues: initialValues,
     onSubmit: async ({ value }: { value: PortionFormState }) => {
       updateMutation.reset();
-      const payload = mapFormToUpdatePayload(value);
+      const payload = mapFormToPortionPayload(value);
 
       try {
         await updateMutation.mutateAsync(payload);
@@ -164,7 +164,7 @@ function UpdatePortionForm({ portionId, initialValues }: UpdatePortionFormProps)
                     id="portion-quantity"
                     type="number"
                     min={1}
-                    step={0.25}
+                    step={0.5}
                     inputMode="decimal"
                     value={field.state.value}
                     onChange={(event) => field.handleChange(event.target.value)}

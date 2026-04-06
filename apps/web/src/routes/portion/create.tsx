@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import {
   getDefaultPortionFormValues,
-  mapFormToCreatePayload,
+  mapFormToPortionPayload,
   portionTypes,
   type PortionFormState,
 } from "./-portion-form.shared";
@@ -27,7 +27,7 @@ function CreatePortion() {
     defaultValues: getDefaultPortionFormValues(),
     onSubmit: async ({ value }: { value: PortionFormState }) => {
       mutation.reset();
-      const payload = mapFormToCreatePayload(value);
+      const payload = mapFormToPortionPayload(value);
 
       try {
         await mutation.mutateAsync(payload);
