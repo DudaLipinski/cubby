@@ -151,6 +151,7 @@ function PortionsPage() {
           value={selectedSortValue}
           onValueChange={(value) => {
             const separatorIndex = value.lastIndexOf("-");
+            if (separatorIndex === -1) return;
             const sort = value.slice(0, separatorIndex) as SortField;
             const order = value.slice(separatorIndex + 1) as SortOrder;
 
